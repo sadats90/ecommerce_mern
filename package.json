@@ -1,0 +1,32 @@
+{
+  "name": "fll-b2c",
+  "version": "1.0.0",
+  "description": "b2c mern",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "client": "npm run dev --prefix frontend",
+    "dev": "concurrently \"npm run server \" \"npm run client \" "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sadats90/b2c_demo.git"
+  },
+  "author": "sadat",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sadats90/b2c_demo/issues"
+  },
+  "homepage": "https://github.com/sadats90/b2c_demo#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "dotenv": "^16.4.5",
+    "nodemon": "^3.1.4"
+  }
+}
