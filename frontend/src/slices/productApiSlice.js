@@ -1,6 +1,6 @@
 import { PRODUCTS_URL } from "../constants";
 import { apiSlice } from "./apiSlice";
-import { useParams} from 'react-router-dom'
+
 
 export const productsApiSlice = apiSlice.injectEndpoints(
 
