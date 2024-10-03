@@ -11,8 +11,8 @@ const authUser = asyncHandler(async (req, res) => {
     if(user && (await user.matchPassword(password))){
 
         const token = jwt.sign({userId : user._id},process.env.JWT_SECRET,{expiresIn: '30d'})
-
-        //set jwt as http only coockie
+        
+        //set jwt as http only cookie
         res.cookie('jwt',token,{
             httpOnly : true,
             secure : process.env.NODE_ENV !== 'development',
@@ -36,12 +36,41 @@ const authUser = asyncHandler(async (req, res) => {
 
 
 const registerUser = asyncHandler(async (req, res) => {
-    res.send('registerUser')
+    const {name,email,password} = req.body
+    const userExist = await User.findOne({email : email})
+    if(userExist){
+        res.status(400)
+        throw new Error('user exists')
+    }
+
+    const user = User.create({
+        name,
+        email,
+        password,
+    })   
+    
+    if(user)
+    {
+        res.status(201).json({
+            _id : user._id,
+            name : user.name,
+            email: user.email,
+            isAdmin : user.isAdmin
+        })
+    }
+    else
+    {
+        res.status(400)
+        throw new Error('user exists')
+    }
+
 })
 
 
 const logoutUser = asyncHandler(async (req, res) => {
-    res.send('logoutUser')
+    res.cookie('jwt','',{ httpOnly : true, expires : new Date(0) })
+
+    res.status(200).json({message : 'Logged Out Successfully'  })
 })
 
 

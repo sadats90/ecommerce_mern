@@ -34,6 +34,19 @@ userSchema.methods.matchPassword = async function(enteredPassword) {
 }
 
 
+userSchema.pre('save',async function (next) {
+  if(!this.isModified('password'))
+  {
+    next()
+  }
+
+  const salt = await bcrypt.genSalt(10)
+  this.password = await bcrypt.hash(this.password,salt) // this referes to the user, it is used in mongoose model and before saving.
+
+
+}) // .pre allows to do something before its saved in the db
+
+
 const User = mongoose.model("User",userSchema)
 
 export default User
