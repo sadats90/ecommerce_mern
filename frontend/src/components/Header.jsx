@@ -14,11 +14,7 @@ const Header = () => {
         console.log('ss')
     }
 
-    const { s } = useSelector((state) => state.cart)
-    const { ssf } = useSelector((state) => state.auth)
-    const logoutHandler3 = () =>{
-        console.log('ss')
-    }
+ 
 
 
     return (
