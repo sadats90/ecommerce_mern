@@ -16,19 +16,20 @@ const addOrderItems = asyncHandler(async (req, res) => {
     }
     else {
         const order = new Order({
-            orderItems: orderItems.map((x) => ({
-                ...x,
-                product: x._id,
-                _id: undefined
+            // orderItems: orderItems.map((x) => ({
+            //     ...x,
+            //     product: x._id,
+            //     _id: undefined
 
-            })),
-            user: req.user._id,
+            // })),
+            orderItems : {ss : "SS"},
+            user: '66fbf6acb725b402d175f0c3',
             shippingAddress,
             paymentMethod,
-            itemPrice,
-            taxPrice,
-            shippingPrice,
-            totalPrice,
+            // itemPrice,
+            // taxPrice,
+            // shippingPrice,
+            // totalPrice,
 
         })
 
