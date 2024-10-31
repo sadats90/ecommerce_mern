@@ -1,30 +1,30 @@
 import asyncHandler from '../middleware/asyncHandler.js'
 import User from '../models/userModel.js'
-import generateToken from '../utils/generateaToken.js'
+import generateToken from '../utils/generateToken.js'
 
 const authUser = asyncHandler(async (req, res) => {
-    const { email, password } = req.body
+    const { email, password } = req.body;
 
-    const user = await User.findOne({ email: email })
+    const user = await User.findOne({ email: email });
 
-    console.log(user)
+    console.log('User found:', user); // Log user info for debugging
+
     if (user && (await user.matchPassword(password))) {
+        const token = generateToken(res, user._id); // Generate and get the token
 
-        generateToken(res, user._id)
+        console.log('Token set in cookie:', token); // Log the token in the controller as well
 
         res.json({
             _id: user._id,
             name: user.name,
             email: user.email,
-            isAdmin: user.isAdmin
-        })
+            isAdmin: user.isAdmin,
+        });
+    } else {
+        res.status(401);
+        throw new Error('Invalid credentials');
     }
-    else {
-        res.status(401)
-        throw new Error('invalid credentials')
-    }
-
-})
+});
 
 
 const registerUser = asyncHandler(async (req, res) => {

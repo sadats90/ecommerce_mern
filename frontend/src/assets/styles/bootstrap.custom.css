@@ -87,14 +87,14 @@
   --bs-body-font-size: 1rem;
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
-  --bs-body-color: #7b8a8b;
+  --bs-body-color: #000;
   --bs-emphasis-color: #000;
   --bs-emphasis-color-rgb: 0, 0, 0;
-  --bs-secondary-color: rgba(123, 138, 139, 0.75);
+  --bs-secondary-color: rgba(5, 5, 5, 0.75);
   --bs-secondary-color-rgb: 123, 138, 139;
   --bs-secondary-bg: #bdcecf;
   --bs-secondary-bg-rgb: 189, 206, 207;
-  --bs-tertiary-color: rgba(123, 138, 139, 0.5);
+  --bs-tertiary-color: rgba(0, 0, 0, 0.5);
   --bs-tertiary-color-rgb: 123, 138, 139;
   --bs-tertiary-bg: #f4f4f4;
   --bs-tertiary-bg-rgb: 244, 244, 244;
@@ -109,7 +109,7 @@
   --bs-highlight-bg: #fdebd0;
   --bs-border-width: 1px;
   --bs-border-style: solid;
-  --bs-border-color: #b5c0c1;
+  --bs-border-color: #080a0a;
   --bs-border-color-translucent: rgba(0, 0, 0, 0.175);
   --bs-border-radius: 0.375rem;
   --bs-border-radius-sm: 0.25rem;
@@ -3227,9 +3227,9 @@ fieldset:disabled .btn {
 }
 
 .btn-dark {
-  --bs-btn-color: #000;
-  --bs-btn-bg: #7b8a8b;
-  --bs-btn-border-color: #7b8a8b;
+  --bs-btn-color: #fdfbfb;
+  --bs-btn-bg: #000000;
+  --bs-btn-border-color: #040505;
   --bs-btn-hover-color: #000;
   --bs-btn-hover-bg: #8f9c9c;
   --bs-btn-hover-border-color: #889697;
