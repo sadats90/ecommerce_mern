@@ -145,7 +145,7 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
   }
 });
 
-
+console.log("test for prod")
 
 // @desc    Update order to delivered
 // @route   GET /api/orders/:id/deliver
