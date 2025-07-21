@@ -20,7 +20,14 @@ const app = express()
 
  
 
-app.use(cors())
+// app.use(cors())
+
+app.use(cors({
+    origin: 'http://localhost:5173',  // Replace with your React app's URL
+    credentials: true                // Allow cookies to be sent
+  }));
+
+
 app.use(express.json()) 
 app.use(express.urlencoded({
     extended : true
