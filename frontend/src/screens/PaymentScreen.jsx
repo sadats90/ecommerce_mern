@@ -1,32 +1,31 @@
 import { useState, useEffect } from 'react';
 import { Form, Button, Col } from 'react-bootstrap';
-import { redirect, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import FormContainer from '../components/FormContainer';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { savePaymentMethod } from '../slices/cartSlice';
 
 const PaymentScreen = () => {
+  const navigate = useNavigate();
+  const cart = useSelector((state) => state.cart);
+  const { shippingAddress } = cart;
+
+  useEffect(() => {
+    if (!shippingAddress.address) {
+      navigate('/shipping');
+    }
+  }, [navigate, shippingAddress]);
 
   const [paymentMethod, setPaymentMethod] = useState('PayPal');
 
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const cart = useSelector((state)=>state.cart)
-  const {shippingAddress} = cart
-
-  useEffect(()=>{
-    if(!shippingAddress)
-      navigate('/shipping')
-  },[shippingAddress,navigate])
-
-  const submitHandler = (e)=> {
-      e.preventDefault()
-      dispatch(savePaymentMethod(paymentMethod))
-      navigate('/placeorder')
-
-  }
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(savePaymentMethod(paymentMethod));
+    navigate('/placeorder');
+  };
 
   return (
     <FormContainer>
@@ -34,9 +33,7 @@ const PaymentScreen = () => {
       <h1>Payment Method</h1>
       <Form onSubmit={submitHandler}>
         <Form.Group>
-          <Form.Label as='legend'>
-            Select Method
-          </Form.Label>
+          <Form.Label as='legend'>Select Method</Form.Label>
           <Col>
             <Form.Check
               className='my-2'
@@ -46,20 +43,17 @@ const PaymentScreen = () => {
               name='paymentMethod'
               value='PayPal'
               checked
-              onCheck={(e) => setPaymentMethod(e.target.value)}
+              onChange={(e) => setPaymentMethod(e.target.value)}
             ></Form.Check>
-
-
           </Col>
         </Form.Group>
 
         <Button type='submit' variant='primary'>
           Continue
         </Button>
-
       </Form>
     </FormContainer>
-  )
-}
+  );
+};
 
-export default PaymentScreen
+export default PaymentScreen;
