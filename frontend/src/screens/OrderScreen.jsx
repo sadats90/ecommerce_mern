@@ -9,7 +9,7 @@ import {
   useDeliverOrderMutation,
   useGetOrderDetailsQuery,
   usePayOrderMutation,
-} from '../slices/orderApiSlice';
+} from '../slices/ordersApiSlice';
 
 const OrderScreen = () => {
   const { id: orderId } = useParams();
