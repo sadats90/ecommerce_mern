@@ -113,7 +113,7 @@ const updateOrderToDelivered = asyncHandler(async (req, res) => {
     throw new Error('Order not found');
   }
 });
-
+//get all orders
 // @desc    Get all orders
 // @route   GET /api/orders
 // @access  Private/Admin
